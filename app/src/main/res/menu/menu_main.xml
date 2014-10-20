@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/cambiar_ciudad"
+        android:orderInCategory="1"
+        android:showAsAction="never" />
+    <item
+        android:id="@+id/info"
+        android:title="@string/info"
+        android:orderInCategory="0"
+        android:showAsAction="never" />
+</menu>

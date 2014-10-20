@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Eguraldia</string>
+    <string name="cambiar_ciudad">Cambiar ciudad</string>
+    <string name="info">Información</string>
+    <string name="autor">Utilidad desarrollada por Aritz Piñero Usategui haciendo uso de la api de Openweathermap.</string>
+    <string name="no_encontrado">No se han encontrado datos.</string>
+    <string name="humedad">Humedad:\t</string>
+    <string name="presion">Presión:\t</string>
+    <string name="viento">Viento:\t</string>
+    <string name="temp_min">Temp. mínima:\t</string>
+    <string name="temp_max">Temp. máxima:\t</string>
+    <string name="actualizacion">Última actualización:\t</string>
+
+    <!-- ID de usuario de openweathermap -->
+    <string name="open_weather_maps_app_id">4f2370079c17a992704f410f59a054ab</string>
+
+    <!-- Códigos para los iconos del tiempo -->
+    <string name="soleado">&#xf00d;</string>
+    <string name="despejado_noche">&#xf02e;</string>
+    <string name="niebla">&#xf014;</string>
+    <string name="nuboso">&#xf013;</string>
+    <string name="lluvia">&#xf019;</string>
+    <string name="nieve">&#xf01b;</string>
+    <string name="tormenta">&#xf01e;</string>
+    <string name="xirimiri">&#xf01c;</string>
+    <string name="granizo">&#xf015;</string>
+
+</resources>
