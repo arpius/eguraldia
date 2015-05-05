@@ -15,11 +15,11 @@ import biz.arpius.eguraldia.R;
  * Created by aritz on 11/10/14.
  */
 public class JsonRemoto {
-    private static final String OPEN_WEATHER_MAP = "http://api.openweathermap.org/data/2.5/weather?q=%s&units=metric&lang=es";
+    private static final String OPEN_WEATHER_MAP = "http://api.openweathermap.org/data/2.5/weather?q=%s&units=metric&lang=%s";
 
-    public static JSONObject getJson(Context ctx, String ciudad) {
+    public static JSONObject getJson(Context ctx, String ciudad, String idioma) {
         try {
-            URL url = new URL(String.format(OPEN_WEATHER_MAP, ciudad));
+            URL url = new URL(String.format(OPEN_WEATHER_MAP, ciudad, idioma));
             HttpURLConnection conexion = (HttpURLConnection)url.openConnection();
 
             conexion.addRequestProperty("x-api-key", ctx.getString(R.string.open_weather_maps_app_id));

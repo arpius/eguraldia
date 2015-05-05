@@ -1,21 +1,19 @@
 package biz.arpius.eguraldia;
 
-import android.app.Activity;
-import android.app.ActionBar;
 import android.app.AlertDialog;
 import android.app.Fragment;
 import android.content.DialogInterface;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
 import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,25 +22,26 @@ import org.json.JSONObject;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import utilidades.JsonRemoto;
 import utilidades.PreferenciaCiudad;
 import utilidades.TextViewEx;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -114,19 +113,26 @@ public class MainActivity extends Activity {
      * A placeholder fragment containing a simple view.
      */
     public static class PlaceholderFragment extends Fragment {
-        Typeface fuente;
-        TextView ciudad, coordenadas, actualizado, descripcion, tempActual, iconoTiempo;
-        TextViewEx detalles;
-        Handler handler;
+        private Typeface fuente;
+        private TextView ciudad, coordenadas, actualizado, descripcion, tempActual, iconoTiempo;
+        private TextViewEx detalles;
+        private Handler handler;
 
         public PlaceholderFragment() {
             handler = new Handler();
         }
 
         @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+            fuente = Typeface.createFromAsset(getActivity().getAssets(), "fonts/weather.ttf");
+            actualizarDatosTiempo(new PreferenciaCiudad(getActivity()).getCiudad());
+        }
+
+        @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_placeholder, container, false);
 
             ciudad = (TextView) rootView.findViewById(R.id.ciudad);
             coordenadas = (TextView) rootView.findViewById(R.id.coordenadas);
@@ -141,17 +147,10 @@ public class MainActivity extends Activity {
             return rootView;
         }
 
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            fuente = Typeface.createFromAsset(getActivity().getAssets(), "fonts/weather.ttf");
-            actualizarDatosTiempo(new PreferenciaCiudad(getActivity()).getCiudad());
-        }
-
         private void actualizarDatosTiempo(final String ciudad) {
             new Thread() {
                 public void run() {
-                    final JSONObject json = JsonRemoto.getJson(getActivity(), ciudad);
+                    final JSONObject json = JsonRemoto.getJson(getActivity(), ciudad, Locale.getDefault().getLanguage());
 
                     if(json == null) {
                         handler.post(new Runnable() {
@@ -191,10 +190,10 @@ public class MainActivity extends Activity {
 
                 detalles.setText(
                         getActivity().getString(R.string.humedad) +main.getString("humidity")+ " %\n"
-                        + getActivity().getString(R.string.presion) +String.format("%.2f", main.getDouble("pressure"))+ " hPa\n"
-                        + getActivity().getString(R.string.viento) +String.format("%.2f", wind.getDouble("speed"))+ " m/s\n"
-                        + getActivity().getString(R.string.temp_min) +String.format("%.2f", main.getDouble("temp_min"))+ " ºC\n"
-                        + getActivity().getString(R.string.temp_max) +String.format("%.2f", main.getDouble("temp_max"))+ " ºC\n"
+                                + getActivity().getString(R.string.presion) +String.format("%.2f", main.getDouble("pressure"))+ " hPa\n"
+                                + getActivity().getString(R.string.viento) +String.format("%.2f", wind.getDouble("speed"))+ " m/s\n"
+                                + getActivity().getString(R.string.temp_min) +String.format("%.2f", main.getDouble("temp_min"))+ " ºC\n"
+                                + getActivity().getString(R.string.temp_max) +String.format("%.2f", main.getDouble("temp_max"))+ " ºC\n"
                         , true
                 );
 

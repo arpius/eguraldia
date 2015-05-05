@@ -1,15 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Eguraldia</string>
-    <string name="cambiar_ciudad">Change city</string>
-    <string name="info">Information</string>
-    <string name="autor">Developed by Aritz Piñero using the Openweathermap\'s API.</string>
-    <string name="no_encontrado">Data not found.</string>
-    <string name="humedad">Humidity:\t</string>
-    <string name="presion">Pressure:\t</string>
-    <string name="viento">Wind:\t</string>
-    <string name="temp_min">Minimum temp:\t</string>
-    <string name="temp_max">Maximum temp:\t</string>
-    <string name="actualizacion">Last update:\t</string>
+    <string name="cambiar_ciudad">Hiria aldatu</string>
+    <string name="info">Informazioa</string>
+    <string name="autor">Aritz Piñero-k garatutako tresna Openweathermap-en API-a erabiliz.</string>
+    <string name="no_encontrado">Ez da daturik aurkitu.</string>
+    <string name="humedad">Hezetasuna:\t</string>
+    <string name="presion">Presioa:\t</string>
+    <string name="viento">Haizea:\t</string>
+    <string name="temp_min">Tenp. minimoa:\t</string>
+    <string name="temp_max">Tenp. maximoa:\t</string>
+    <string name="actualizacion">Azken gaurkotzea:\t</string>
 
     <!-- ID de usuario de openweathermap -->
     <string name="open_weather_maps_app_id">4f2370079c17a992704f410f59a054ab</string>
